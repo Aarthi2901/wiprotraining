@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+public class FibonacciRangeSum{
+    public static int[] generateFibonacci(int limit){
+        int[] fib = new int[limit];
+        fib[0]=0;
+        if(limit > 1){
+            fib[1]=1;
+        }
+        for(int i=2;i<limit;i++){
+            fib[i]=fib[i-1]+ fib[i-2];
+        }
+        return fib;
+    }
+    public static String sumFibonacciRange(int n, int m){
+        if(n<1||n>20||m<1||m>20){
+            return "Invalid Input";
+        }
+        int[] fib=generateFibonacci(Math.max(n, m));
+        int sum=0;
+        for (int i=n-1; i<m;i++){
+            sum+=fib[i];
+        }
+        
+        return "The Sum of Fibonacci value is " + (double) sum;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        System.out.println(sumFibonacciRange(n, m));
+        sc.close();
+    }
+}
